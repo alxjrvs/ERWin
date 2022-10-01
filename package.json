@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "ts-node src/Bot.ts",
+    "start": "ts-node src/index.ts",
+    "deploy": "ts-node src/deploy-commands.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
@@ -9,7 +10,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "discord.js": "^14.5.0"
+    "@discordjs/builders": "^1.2.0",
+    "discord.js": "^14.5.0",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@types/jest": "^29.1.1",
