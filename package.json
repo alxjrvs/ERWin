@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "deploy": "ts-node src/deploy-commands.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -27,6 +27,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.4"
   },
   "lint-staged": {

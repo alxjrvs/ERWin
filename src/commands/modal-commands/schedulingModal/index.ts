@@ -1,4 +1,5 @@
 import { GuildMemberRoleManager, ModalSubmitInteraction } from 'discord.js'
+import { sendSignupMessage } from 'src/structures/sendSignupMessage'
 import { createChannels } from './createChannels'
 import { createGameRole } from './createGameRole'
 
@@ -29,32 +30,33 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
 
   await interaction.reply({ content: 'Initializing...', ephemeral: true })
 
-  const name = fields.getTextInputValue('name').replace('@', '')
-  const address = fields.getTextInputValue('address')
-  const startTime = fields.getTextInputValue('startTime')
-  const date = fields.getTextInputValue('date')
-  const everyone = guild.roles.everyone
+  const shortGameContext = {
+    guild,
+    channel,
+    name: fields.getTextInputValue('name').replace('@', ''),
+    address: fields.getTextInputValue('address'),
+    startTime: fields.getTextInputValue('startTime'),
+    date: fields.getTextInputValue('date'),
+    everyone: guild.roles.everyone,
+  }
 
   // Create Role
-  // const newRole = await createGameRole(guild, name)
+  const newRole = await createGameRole(shortGameContext)
+
+  const gameContext = {
+    ...shortGameContext,
+    newRole,
+  }
 
   // Add Role to member who invoked command
   // const memberRoles = member.roles as GuildMemberRoleManager
   // memberRoles.add(newRole)
 
   // Create Channels
-  // await createChannels({
-  //   guild,
-  //   name,
-  //   newRole,
-  //   everyone,
-  //   address,
-  //   startTime,
-  //   date
-  // })
+  // await createChannels(gameContext)
 
   // Send Message to Signups channel
-  const message = await channel.send(name)
+  const message = await sendSignupMessage(gameContext)
 
   // Sign off.
   await interaction.followUp({

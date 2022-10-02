@@ -1,5 +1,5 @@
 import { ChannelType, OverwriteType, PermissionsBitField } from 'discord.js'
-import { ModalInputs } from './types'
+import { GameContext } from './types'
 
 export async function createChannels({
   guild,
@@ -9,7 +9,7 @@ export async function createChannels({
   everyone,
   name,
   address
-}: ModalInputs) {
+}: GameContext) {
   const category = await guild.channels.create({
     name,
     type: ChannelType.GuildCategory,

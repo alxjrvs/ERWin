@@ -1,6 +1,6 @@
-import { Guild } from 'discord.js'
+import { GameContext } from './types'
 
-export async function createGameRole(guild: Guild, name: string) {
+export async function createGameRole({ guild, name }: Omit<GameContext, 'newRole'>) {
   return guild.roles.create({
     name,
     mentionable: true
