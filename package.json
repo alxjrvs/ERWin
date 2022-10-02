@@ -1,7 +1,6 @@
 {
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "test": "echo \"Test!\"",
     "deploy": "ts-node src/deploy-commands.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
