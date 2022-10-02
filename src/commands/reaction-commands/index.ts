@@ -20,15 +20,13 @@ export async function reactionCommands(client: Client) {
       }
     }
 
-    const isSignupChannel = origin.message.channel.id == process.env.SIGNUP_CHANNEL_ID
+    const isSignupChannel =
+      origin.message.channel.id == process.env.SIGNUP_CHANNEL_ID
     const isBotMessage = origin.message.author?.id == process.env.APP_ID
     const isBotReaction = origin.message.author?.id == user.id
     const role = origin.message.mentions.roles.first()
     const isValidSignupReaction =
-      isSignupChannel &&
-      isBotMessage &&
-      role &&
-      !isBotReaction
+      isSignupChannel && isBotMessage && role && !isBotReaction
 
     if (isValidSignupReaction) {
       handleSignupReaction(origin, user, role)

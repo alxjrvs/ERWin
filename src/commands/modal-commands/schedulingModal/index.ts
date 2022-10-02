@@ -40,15 +40,21 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
     gameLocation: fields.getTextInputValue('gameLocation'),
     startTime: fields.getTextInputValue('startTime'),
     date: formatDate(fields.getTextInputValue('date')),
-    everyone: guild.roles.everyone,
+    everyone: guild.roles.everyone
   }
 
-  const dateFormattedCorrectly = rolelessGameContext.date.toString() != 'Invalid Date'
+  const dateFormattedCorrectly =
+    rolelessGameContext.date.toString() != 'Invalid Date'
   const dateIsInFuture = rolelessGameContext.date > new Date()
   const dateValid = dateFormattedCorrectly && dateIsInFuture
 
   if (!dateValid) {
-    await interaction.followUp({ content: `\`${fields.getTextInputValue('date')}\` is not a valid date. Be sure to use DD/MM/YY, and be sure the date is in the future.`, ephemeral: true })
+    await interaction.followUp({
+      content: `\`${fields.getTextInputValue(
+        'date'
+      )}\` is not a valid date. Be sure to use DD/MM/YY, and be sure the date is in the future.`,
+      ephemeral: true
+    })
     return
   }
 
@@ -57,7 +63,7 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
 
   const gameContext = {
     ...rolelessGameContext,
-    newRole,
+    newRole
   }
 
   // Add Role to member who invoked command

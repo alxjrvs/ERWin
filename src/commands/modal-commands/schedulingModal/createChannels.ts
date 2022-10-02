@@ -84,7 +84,12 @@ export async function createChannels({
     `Game Details:`,
     `Host: ${member.toString()}`,
     `Where: ${gameLocation}`,
-    `When: ${date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })} @ ${startTime}`,
+    `When: ${date.toLocaleDateString('en-us', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })} @ ${startTime}`
   ].join('\n')
 
   details.send(message).then((msg) => msg.pin())
