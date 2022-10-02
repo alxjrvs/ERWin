@@ -1,4 +1,7 @@
 dist
 coverage
 node_modules
+.gitignore
+.husky
+.prettierignore
 *.lock
