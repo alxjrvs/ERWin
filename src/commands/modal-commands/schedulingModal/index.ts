@@ -6,6 +6,8 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
   const { guild, fields, member, reply, followUp } = interaction
   if (guild == null || member == null) {
     console.error("Guid or Member not found.")
+
+    await interaction.reply({ content: "Something went wrong - Guid or Member not found.", ephemeral: true })
     return
   }
 
@@ -25,7 +27,7 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
   memberRoles.add(newRole)
 
   // Create Channels
-  // await createChannels({ guild, name, newRole, everyone, address, startTime, date })
+  await createChannels({ guild, name, newRole, everyone, address, startTime, date })
 
   // Send Message to Signups channel
   const channel = guild.channels.cache.get(process.env.SIGNUP_CHANNEL_ID || 'NO_SIGNUP_CHANNEL_ID')
