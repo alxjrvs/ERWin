@@ -7,7 +7,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "prepare": "husky install"
+    "prepare": "npm -g husky && husky install"
   },
   "dependencies": {
     "@discordjs/builders": "^1.2.0",
