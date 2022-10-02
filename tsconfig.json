@@ -14,8 +14,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
-    "sourceMap": false,
-    "baseUrl": "."
+    "sourceMap": false
   },
   "files": ["src/index.ts"],
   "include": ["./**/*.ts"],

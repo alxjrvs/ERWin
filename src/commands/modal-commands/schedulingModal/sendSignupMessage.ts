@@ -1,5 +1,5 @@
-import { GameContext } from 'src/commands/modal-commands/schedulingModal/types'
-import { ApprovalEmoji, MaybeEmoji, RejectEmoji } from 'src/constants'
+import { GameContext } from './types'
+import { ApprovalEmoji, MaybeEmoji, RejectEmoji } from '../../../constants'
 
 export async function sendSignupMessage({
   guild,

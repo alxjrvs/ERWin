@@ -1,6 +1,6 @@
 import { GuildMemberRoleManager, ModalSubmitInteraction } from 'discord.js'
-import { sendSignupMessage } from 'src/structures/sendSignupMessage'
-import { formatDate } from 'src/utils/formatDate'
+import { formatDate } from './formatDate'
+import { sendSignupMessage } from './sendSignupMessage'
 import { createChannels } from './createChannels'
 import { createGameRole } from './createGameRole'
 

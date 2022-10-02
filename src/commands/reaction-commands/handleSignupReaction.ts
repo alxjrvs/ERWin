@@ -9,7 +9,7 @@ import {
   TextChannel,
   User
 } from 'discord.js'
-import { ApprovalEmoji, SignupReactionEmoji } from 'src/constants'
+import { ApprovalEmoji, SignupReactionEmoji } from '../../constants'
 
 export async function handleSignupReaction(
   origin: MessageReaction | PartialMessageReaction,
