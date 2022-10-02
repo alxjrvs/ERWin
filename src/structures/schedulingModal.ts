@@ -1,7 +1,7 @@
 import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ModalActionRowComponentBuilder } from 'discord.js'
 
 export const SchedulingModalId = 'gameScheduler'
-export function schedulingModal() {
+export function createSchedulingModal() {
   const modal = new ModalBuilder()
     .setCustomId(SchedulingModalId)
     .setTitle('Schedule Game')
@@ -30,7 +30,6 @@ export function schedulingModal() {
       .setCustomId('address')
       .setLabel("Location of event")
       .setPlaceholder("123 Main Street")
-      .setValue("10:00 PM")
       .setStyle(TextInputStyle.Short)
       .setRequired(true),
     new TextInputBuilder()

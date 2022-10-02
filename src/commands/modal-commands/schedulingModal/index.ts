@@ -2,13 +2,14 @@ import { GuildMemberRoleManager, ModalSubmitInteraction } from 'discord.js'
 import { createChannels } from './createChannels'
 import { createGameRole } from './createGameRole'
 
-export async function schedulingModal({ guild, fields, member, reply, followUp }: ModalSubmitInteraction) {
+export async function schedulingModal(interaction: ModalSubmitInteraction) {
+  const { guild, fields, member, reply, followUp } = interaction
   if (guild == null || member == null) {
     console.error("Guid or Member not found.")
     return
   }
 
-  await reply({ content: "Initializing...", ephemeral: true })
+  await interaction.reply({ content: "Initializing...", ephemeral: true })
 
   const name = fields.getTextInputValue('name').replace('@', '')
   const address = fields.getTextInputValue('address')
@@ -24,7 +25,7 @@ export async function schedulingModal({ guild, fields, member, reply, followUp }
   memberRoles.add(newRole)
 
   // Create Channels
-  await createChannels({ guild, name, newRole, everyone, address, startTime, date })
+  // await createChannels({ guild, name, newRole, everyone, address, startTime, date })
 
   // Send Message to Signups channel
   const channel = guild.channels.cache.get(process.env.SIGNUP_CHANNEL_ID || 'NO_SIGNUP_CHANNEL_ID')
@@ -33,5 +34,5 @@ export async function schedulingModal({ guild, fields, member, reply, followUp }
   }
 
   // Sign off.
-  await followUp({ content: "Game Scheduling complete. Good luck out there.", ephemeral: true })
+  await interaction.followUp({ content: "Game Scheduling complete. Good luck out there.", ephemeral: true })
 }
