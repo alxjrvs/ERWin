@@ -6,8 +6,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check",
-    "prepare": "husky install"
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@discordjs/builders": "^1.2.0",
