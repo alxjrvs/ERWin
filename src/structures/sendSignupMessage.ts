@@ -8,7 +8,6 @@ export async function sendSignupMessage({ guild, description, date, startTime, c
     "============================",
     `New Game Announcement: ${newRole.toString()} `,
     `${date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })} @ ${startTime}`,
-    description ? "-----------------------------------------------" : null,
     description ? description.toString() : null,
     "-----------------------------------------------",
     "RSVP using the reactions below:",

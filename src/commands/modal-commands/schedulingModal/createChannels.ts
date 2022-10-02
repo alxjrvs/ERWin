@@ -8,12 +8,13 @@ export async function createChannels({
   newRole,
   everyone,
   name,
+  member,
   gameLocation
 }: GameContext) {
   const category = await guild.channels.create({
     name,
     type: ChannelType.GuildCategory,
-    position: 3,
+    position: 2,
     permissionOverwrites: [
       {
         type: OverwriteType.Role,
@@ -81,9 +82,9 @@ export async function createChannels({
   // Send a follow-up message with gameLocation
   const message = [
     `Game Details:`,
-    `Host: <Host>`,
+    `Host: ${member.toString()}`,
     `Where: ${gameLocation}`,
-    `When: ${date} @ ${startTime}`
+    `When: ${date.toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })} @ ${startTime}`,
   ].join('\n')
 
   details.send(message).then((msg) => msg.pin())

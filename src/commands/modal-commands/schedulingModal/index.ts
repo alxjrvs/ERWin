@@ -34,6 +34,7 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
   const rolelessGameContext = {
     guild,
     channel,
+    member,
     name: fields.getTextInputValue('name').replace('@', ''),
     description: fields.getTextInputValue('description'),
     gameLocation: fields.getTextInputValue('gameLocation'),
@@ -60,18 +61,12 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
   }
 
   // Add Role to member who invoked command
-  // const memberRoles = member.roles as GuildMemberRoleManager
-  // memberRoles.add(newRole)
+  const memberRoles = member.roles as GuildMemberRoleManager
+  memberRoles.add(newRole)
 
   // Create Channels
-  // await createChannels(gameContext)
+  await createChannels(gameContext)
 
   // Send Message to Signups channel
-  const message = await sendSignupMessage(gameContext)
-
-  // Sign off.
-  await interaction.followUp({
-    content: 'Game Scheduling complete. Thanks for using ERWin!',
-    ephemeral: true
-  })
+  await sendSignupMessage(gameContext)
 }
