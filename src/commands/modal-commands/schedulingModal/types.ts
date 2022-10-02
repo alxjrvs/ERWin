@@ -2,11 +2,12 @@ import { Guild, NewsChannel, PrivateThreadChannel, PublicThreadChannel, Role, Te
 
 export interface GameContext {
   name: string
-  address: string
+  description: string
+  gameLocation: string
   everyone: Role
   newRole: Role
   guild: Guild
-  date: string
+  date: Date,
   startTime: string
   channel: NewsChannel | TextChannel | PrivateThreadChannel | PublicThreadChannel | VoiceChannel
 }

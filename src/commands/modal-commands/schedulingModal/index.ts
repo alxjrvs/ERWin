@@ -1,5 +1,6 @@
 import { GuildMemberRoleManager, ModalSubmitInteraction } from 'discord.js'
 import { sendSignupMessage } from 'src/structures/sendSignupMessage'
+import { formatDate } from 'src/utils/formatDate'
 import { createChannels } from './createChannels'
 import { createGameRole } from './createGameRole'
 
@@ -30,21 +31,31 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
 
   await interaction.reply({ content: 'Initializing...', ephemeral: true })
 
-  const shortGameContext = {
+  const rolelessGameContext = {
     guild,
     channel,
     name: fields.getTextInputValue('name').replace('@', ''),
-    address: fields.getTextInputValue('address'),
+    description: fields.getTextInputValue('description'),
+    gameLocation: fields.getTextInputValue('gameLocation'),
     startTime: fields.getTextInputValue('startTime'),
-    date: fields.getTextInputValue('date'),
+    date: formatDate(fields.getTextInputValue('date')),
     everyone: guild.roles.everyone,
   }
 
+  const dateFormattedCorrectly = rolelessGameContext.date.toString() != 'Invalid Date'
+  const dateIsInFuture = rolelessGameContext.date > new Date()
+  const dateValid = dateFormattedCorrectly && dateIsInFuture
+
+  if (!dateValid) {
+    await interaction.followUp({ content: `\`${fields.getTextInputValue('date')}\` is not a valid date. Be sure to use DD/MM/YY, and be sure the date is in the future.`, ephemeral: true })
+    return
+  }
+
   // Create Role
-  const newRole = await createGameRole(shortGameContext)
+  const newRole = await createGameRole(rolelessGameContext)
 
   const gameContext = {
-    ...shortGameContext,
+    ...rolelessGameContext,
     newRole,
   }
 

@@ -8,7 +8,7 @@ export async function createChannels({
   newRole,
   everyone,
   name,
-  address
+  gameLocation
 }: GameContext) {
   const category = await guild.channels.create({
     name,
@@ -78,11 +78,11 @@ export async function createChannels({
     parent: category.id
   })
 
-  // Send a follow-up message with Address
+  // Send a follow-up message with gameLocation
   const message = [
     `Game Details:`,
     `Host: <Host>`,
-    `Where: ${address}`,
+    `Where: ${gameLocation}`,
     `When: ${date} @ ${startTime}`
   ].join('\n')
 

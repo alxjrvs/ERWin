@@ -33,7 +33,7 @@ export function createSchedulingModal() {
       .setStyle(TextInputStyle.Short)
       .setRequired(true),
     new TextInputBuilder()
-      .setCustomId('address')
+      .setCustomId('gameLocation')
       .setLabel('Location of event')
       .setPlaceholder('123 Main Street')
       .setStyle(TextInputStyle.Short)
