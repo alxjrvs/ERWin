@@ -3,8 +3,7 @@ import { SchedulingModalId } from '../../structures/schedulingModal'
 import { schedulingModal } from './schedulingModal'
 
 export async function modalCommands(client: Client) {
-
-  client.on('interactionCreate', interaction => {
+  client.on('interactionCreate', (interaction) => {
     if (!interaction.isModalSubmit()) return
 
     const { customId } = interaction

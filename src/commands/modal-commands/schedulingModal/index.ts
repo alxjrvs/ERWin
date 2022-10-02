@@ -5,19 +5,29 @@ import { createGameRole } from './createGameRole'
 export async function schedulingModal(interaction: ModalSubmitInteraction) {
   const { guild, fields, member } = interaction
   if (guild == null || member == null) {
-    console.error("Guid or Member not found.")
+    console.error('Guid or Member not found.')
 
-    await interaction.reply({ content: "Something went wrong - Guid or Member not found.", ephemeral: true })
+    await interaction.reply({
+      content:
+        "It looks like ERWIN can't find the Guild or Member for this server.",
+      ephemeral: true
+    })
     return
   }
 
-  const channel = guild.channels.cache.get(process.env.SIGNUP_CHANNEL_ID || 'NO_SIGNUP_CHANNEL_ID')
+  const channel = guild.channels.cache.get(
+    process.env.SIGNUP_CHANNEL_ID || 'NO_SIGNUP_CHANNEL_ID'
+  )
   if (!channel?.isTextBased()) {
-    await interaction.reply({ content: "It looks like ERWin can't find the Signup channel.", ephemeral: true })
+    console.error('Game Signup channel not found, or is not text based.')
+    await interaction.reply({
+      content: "It looks like ERWin can't find the Signup channel.",
+      ephemeral: true
+    })
     return
   }
 
-  await interaction.reply({ content: "Initializing...", ephemeral: true })
+  await interaction.reply({ content: 'Initializing...', ephemeral: true })
 
   const name = fields.getTextInputValue('name').replace('@', '')
   const address = fields.getTextInputValue('address')
@@ -25,21 +35,30 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
   const date = fields.getTextInputValue('date')
   const everyone = guild.roles.everyone
 
-  if (process.env.SKIP_FOR_DEV) {
-    // Create Role
-    const newRole = await createGameRole(guild, name)
+  // Create Role
+  // const newRole = await createGameRole(guild, name)
 
-    // Add Role to member who invoked command
-    const memberRoles = member.roles as GuildMemberRoleManager
-    memberRoles.add(newRole)
+  // Add Role to member who invoked command
+  // const memberRoles = member.roles as GuildMemberRoleManager
+  // memberRoles.add(newRole)
 
-    // Create Channels
-    await createChannels({ guild, name, newRole, everyone, address, startTime, date })
+  // Create Channels
+  // await createChannels({
+  //   guild,
+  //   name,
+  //   newRole,
+  //   everyone,
+  //   address,
+  //   startTime,
+  //   date
+  // })
 
-    // Send Message to Signups channel
-    await channel.send(name)
-  }
+  // Send Message to Signups channel
+  const message = await channel.send(name)
 
   // Sign off.
-  await interaction.followUp({ content: "Game Scheduling complete. Good luck out there.", ephemeral: true })
+  await interaction.followUp({
+    content: 'Game Scheduling complete. Thanks for using ERWin!',
+    ephemeral: true
+  })
 }
