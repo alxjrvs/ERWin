@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleSignupReaction = void 0;
-const constants_1 = require("src/constants");
+const constants_1 = require("../../constants");
 async function handleSignupReaction(origin, user, role) {
     const emoji = origin.emoji.name || '✨';
     if (!constants_1.SignupReactionEmoji.includes(emoji)) {
