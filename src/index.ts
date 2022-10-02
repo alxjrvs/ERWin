@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from 'discord.js'
+import { Client, GatewayIntentBits, TextBasedChannel } from 'discord.js'
 import { config } from 'dotenv'
 import { slashCommands } from './commands/slash-commands'
 import { SchedulerModalId } from './commands/slash-commands/activate'
@@ -17,7 +17,11 @@ client.on('interactionCreate', interaction => {
   const { customId } = interaction
 
   if (customId == SchedulerModalId) {
-    interaction.reply('Foo')
+    interaction.reply({ content: 'Good Luck Soldier' })
+    const channel = client.channels.cache.get('1025927114215665664')
+    if (channel && channel.isTextBased()) {
+      channel.send('Foo')
+    }
   }
 
 })
