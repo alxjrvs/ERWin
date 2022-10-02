@@ -2,6 +2,7 @@
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "deploy": "ts-node src/deploy-commands.ts",
+    "build": "tsc -p .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
