@@ -1,5 +1,5 @@
 import { Client } from 'discord.js'
-import { SchedulingModalId } from '../../structures/createSchedulingModal'
+import { SchedulingModalId } from '../slash-commands/activate/createSchedulingModal'
 import { schedulingModal } from './schedulingModal'
 
 export async function modalCommands(client: Client) {
