@@ -7,6 +7,7 @@ export async function sendSignupMessage({
   date,
   startTime,
   channel,
+  member,
   newRole
 }: GameContext) {
   const content = [

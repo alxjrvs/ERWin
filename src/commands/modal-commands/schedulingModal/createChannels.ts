@@ -9,6 +9,7 @@ export async function createChannels({
   everyone,
   name,
   member,
+  description,
   gameLocation
 }: GameContext) {
   const category = await guild.channels.create({
@@ -36,14 +37,7 @@ export async function createChannels({
     name: 'details',
     type: ChannelType.GuildText,
     position: 1,
-    parent: category.id,
-    permissionOverwrites: [
-      {
-        type: OverwriteType.Role,
-        id: newRole?.id || 'NO-ROLE',
-        deny: [PermissionsBitField.Flags.SendMessages]
-      }
-    ]
+    parent: category.id
   })
 
   await guild.channels.create({
@@ -89,7 +83,9 @@ export async function createChannels({
       year: 'numeric',
       month: 'short',
       day: 'numeric'
-    })} @ ${startTime}`
+    })} @ ${startTime}`,
+    '-------------------',
+    description
   ].join('\n')
 
   details.send(message).then((msg) => msg.pin())
