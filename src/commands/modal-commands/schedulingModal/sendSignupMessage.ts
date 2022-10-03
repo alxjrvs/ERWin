@@ -21,6 +21,7 @@ export async function sendSignupMessage({
       month: 'short',
       day: 'numeric'
     })} @ ${startTime}`,
+    '-----------------------------------------------',
     description ? description.toString() : null,
     '-----------------------------------------------',
     'RSVP using the reactions below:',
