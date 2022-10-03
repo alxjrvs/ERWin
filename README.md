@@ -19,8 +19,21 @@ This does mean that you will need to run your own ERWin for your purposes.
   - `APP_ID` is the `application_id` from the developer portal
   - `GUILD_ID` is the ID of the DIscord server you installed ERWin on
   - `SIGNUP_CHANNEL_ID` is the ID of the channel you will be using to blast alerts.
+- `$ npm run deploy` will assign the commands to your server.
+- `$ npm run start` will kick off the server. So long as this command stays up, `ERWin` is live!
 
 ## Usage
 
 - use `/mecatol` to make sure the bot is operational and responding to commands. Our own personal `ping`!
-- use `/activate` to kick off
+- use `/activate` to kick off the scheduling process.
+  - this will open a modal to ask for details. When you submit that modal, You will:
+    - create a new category and channels for that category
+    - create a new Role and assign that role to you
+    - post in the `SIGNUP_CHANNEL` and solicit feedback
+
+Pics of the signup process to come as this project continues to cook!
+
+## Future Ideas
+
+- Confirmation dialogue showing preview of signup post
+- sort through the type issues (a few `as`'s)
