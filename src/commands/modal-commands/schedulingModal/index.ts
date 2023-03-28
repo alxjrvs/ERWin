@@ -1,8 +1,14 @@
-import { GuildMemberRoleManager, ModalSubmitInteraction } from 'discord.js'
+import {
+  GuildBasedChannel,
+  GuildMemberRoleManager,
+  ModalSubmitInteraction,
+  TextChannel
+} from 'discord.js'
 import { formatDate } from './formatDate'
 import { sendSignupMessage } from './sendSignupMessage'
 import { createChannels } from './createChannels'
 import { createGameRole } from './createGameRole'
+import { GameContext } from './types'
 
 export async function schedulingModal(interaction: ModalSubmitInteraction) {
   const { guild, fields, member } = interaction
@@ -19,7 +25,7 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
 
   const channel = guild.channels.cache.get(
     process.env.SIGNUP_CHANNEL_ID || 'NO_SIGNUP_CHANNEL_ID'
-  )
+  ) as TextChannel
   if (!channel?.isTextBased()) {
     console.error('Game Signup channel not found, or is not text based.')
     await interaction.reply({
@@ -31,7 +37,7 @@ export async function schedulingModal(interaction: ModalSubmitInteraction) {
 
   await interaction.reply({ content: 'Initializing...', ephemeral: true })
 
-  const rolelessGameContext = {
+  const rolelessGameContext: Omit<GameContext, 'newRole'> = {
     guild,
     channel,
     member,
