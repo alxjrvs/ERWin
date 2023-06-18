@@ -13,5 +13,7 @@ const activate = new discord_js_1.SlashCommandBuilder()
 const commands = [rex, activate].map((command) => command.toJSON());
 const rest = new discord_js_1.REST({ version: '10' }).setToken(process.env.TOKEN || 'NO_TOKEN');
 rest
-    .put(discord_js_1.Routes.applicationCommands(process.env.APP_ID || 'NO_APP_ID'), { body: commands })
+    .put(discord_js_1.Routes.applicationCommands(process.env.APP_ID || 'NO_APP_ID'), {
+    body: commands
+})
     .catch(console.error);
